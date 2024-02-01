@@ -57,10 +57,12 @@ This repository provides guidance on setting up and working with the turtlebots 
      zstd_vendor
      ros2bag
      ```
-## Raspberry pi Setup
-
-## Startup script in vicon room
    - There are some packages, like ```rosbag2_tests``` and ```rosbag2``` which have issues building, but they don't seem important for the purposes of recording and playing back bag files.
      
 6. Copy the contents of jetson.sh
 7. Make an environment variable for the specified robot
+   
+## Raspberry pi Setup
+
+## Startup script in vicon room
+
