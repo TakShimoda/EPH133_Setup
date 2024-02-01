@@ -66,3 +66,20 @@ This repository provides guidance on setting up and working with the turtlebots 
 
 ## Startup script in vicon room
 
+## Save files from Jetson on USB by command line
+1. Plug in your usb and find its mount point by typing
+    ```
+   lsblk
+    ```
+   - You will get a result, such as ```/media/jetson/LEXAR```
+2. Copy the folder to your USB:
+    ```
+   cp -r <FOLDER> <MOUNT POINT>
+   # e.g. cp -r B04-Jetson-0201-1 /media/jetson/LEXAR
+    ```
+3. Safely eject the USB:
+    ```
+   udisksctl unmount -b /dev/sda1
+   udisksctl power-off -b /dev/sda
+    ```
+
