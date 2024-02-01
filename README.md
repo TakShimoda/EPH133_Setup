@@ -1,5 +1,5 @@
 # EPH133_Setup
-This repository provides guidance on setting up and working with the turtlebots for the vicon room in EPH133, including e Jetson Nano and Realsense D435i cameras.
+This repository provides guidance on setting up and working with the turtlebots for the vicon room in EPH133, including the Jetson Nano and Realsense D435i cameras.
 
 ## Jetson Nano Setup
 1. Flash a Ubuntu 20.04 image on the Jetson and install ROS2. Also make note of the IP address with ```ifconfig```. 
