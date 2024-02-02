@@ -1,6 +1,13 @@
 # EPH133_Setup
 This repository provides guidance on setting up and working with the turtlebots for the vicon room in EPH133, including the Jetson Nano and Realsense D435i cameras.
 
+## Table of Contents
+
+[Jetson Nano Setup](https://github.com/TakShimoda/EPH133_Setup/edit/main/README.md#jetson-nano-setup)   
+[Raspberry pi Setup](https://github.com/TakShimoda/EPH133_Setup/edit/main/README.md#raspberry-pi-setup)  
+[Running the robots with vicon](https://github.com/TakShimoda/EPH133_Setup?tab=readme-ov-file#running-the-robots-with-vicon)  
+[Save files from Jetson on USB by command line](https://github.com/TakShimoda/EPH133_Setup?tab=readme-ov-file#save-files-from-jetson-on-usb-by-command-line)
+
 ## Jetson Nano Setup
 ### Setting up the OS
 1. Download Balena Etcher https://etcher.balena.io/
