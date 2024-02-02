@@ -75,7 +75,7 @@ This repository provides guidance on setting up and working with the turtlebots 
      
 6. Copy the files from jetson_files to the home directory:  
    ```
-   cp jetson_files/*.* /home/jetson
+   cp Jetson_files/*.* /home/jetson
    ```
 7. Make an environment variable for the specified robot (optional).
    
