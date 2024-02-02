@@ -88,7 +88,10 @@ This repository provides guidance on setting up and working with the turtlebots 
       ```
 3. Clone the repository [my_tb3_launcher](https://github.com/h2jaafar/my_tb3_launcher) into turtlebot3/src.
 4. Change any instances of "B04" to the Burger number of your choice.
-5. Copy the RPI.sh and kill_rpi.sh scripts into the home folder.
+5. Copy the RPI.sh and kill_rpi.sh scripts into the home folder:
+      ```
+      cp RPI_files/*.* /home/ubuntu
+      ```
 ## Running the robots with vicon.
 1. Start up the shell scripts to run the vicon setup.
 2. ssh into the raspberry pi and jetson nano. Password for RPI is ```turtlebot``` and password for jetson is ```jetson```
