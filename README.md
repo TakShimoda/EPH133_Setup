@@ -2,7 +2,13 @@
 This repository provides guidance on setting up and working with the turtlebots for the vicon room in EPH133, including the Jetson Nano and Realsense D435i cameras.
 
 ## Jetson Nano Setup
-1. Flash a Ubuntu 20.04 image on the Jetson and install ROS2. Also make note of the IP address with ```ifconfig```. 
+### Setting up the OS
+1. Download Balena Etcher https://etcher.balena.io/
+2. Open Balena and Select img.tz file. Download the image from [here](https://drive.google.com/drive/folders/1qM5vqfcCoc4Gt38sy7KjRVl5En-bksCO)
+3. Select the USB and flash Ubuntu on the SD card.
+4. Make note of the IP address with ```ifconfig``` and checking under wlan.
+### Setting up software
+1. Install ROS2 foxy following instructions from the official website. 
 2. Install the librealsense library following the instructions [here](https://github.com/IntelRealSense/librealsense/blob/master/doc/installation_jetson.md)
 3. Install the debian package ```librealsense-ros``` from ROS servers following the instructions [here](https://github.com/IntelRealSense/realsense-ros?tab=readme-ov-file#installation):
 
@@ -63,6 +69,11 @@ This repository provides guidance on setting up and working with the turtlebots 
 7. Make an environment variable for the specified robot
    
 ## Raspberry pi Setup
+1. Setup as shown in the turtlebot3 guide, installing ros2 foxy.
+2. Copy contnets of rpi_wifi.txt to /etc/netplan/50-cloud-yaml. rpi_wifi.txt can be found [here](https://drive.google.com/drive/folders/1qM5vqfcCoc4Gt38sy7KjRVl5En-bksCO). Modify so the IP address matches the output of ```ifconfig``` under wlan.
+3. Clone the repository [my_tb3_launcher](https://github.com/h2jaafar/my_tb3_launcher) into turtlebot3/src.
+4. Change any instances of "B04" to the Burger number of your choice.
+5. Copy the RPI.sh and kill_rpi.sh scripts into the home folder. 
 
 ## Startup script in vicon room
 
