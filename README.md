@@ -3,8 +3,8 @@ This repository provides guidance on setting up and working with the turtlebots 
 
 ## Table of Contents
 
-[Jetson Nano Setup](https://github.com/TakShimoda/EPH133_Setup/edit/main/README.md#jetson-nano-setup)   
-[Raspberry pi Setup](https://github.com/TakShimoda/EPH133_Setup/edit/main/README.md#raspberry-pi-setup)  
+[Jetson Nano Setup](https://github.com/TakShimoda/EPH133_Setup?tab=readme-ov-file#jetson-nano-setup)   
+[Raspberry pi Setup](https://github.com/TakShimoda/EPH133_Setup?tab=readme-ov-file#raspberry-pi-setup)  
 [Running the robots with vicon](https://github.com/TakShimoda/EPH133_Setup?tab=readme-ov-file#running-the-robots-with-vicon)  
 [Save files from Jetson on USB by command line](https://github.com/TakShimoda/EPH133_Setup?tab=readme-ov-file#save-files-from-jetson-on-usb-by-command-line)
 
