@@ -75,7 +75,10 @@ This repository provides guidance on setting up and working with the turtlebots 
 4. Change any instances of "B04" to the Burger number of your choice.
 5. Copy the RPI.sh and kill_rpi.sh scripts into the home folder. 
 
-## Startup script in vicon room
+## Running the robots with vicon.
+1. Start up the shell scripts to run the vicon setup.
+2. ssh into the raspberry pi and jetson nano.
+3. Run the scripts for both rpi and jetson, and then record the vicon topic for the ground-truth.
 
 ## Save files from Jetson on USB by command line
 1. Plug in your usb and find its mount point by typing
