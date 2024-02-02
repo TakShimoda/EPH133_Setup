@@ -54,8 +54,9 @@ This repository provides guidance on setting up and working with the turtlebots 
      git clone -b foxy-future https://github.com/ros2/rosbag2
      ```
    - Then install some dependencies to properly build the packages:
-
-     ```sudo apt install ros-foxy-test-msgs ros-foxy-pybind11-vendor```
+     ```
+     sudo apt install ros-foxy-test-msgs ros-foxy-pybind11-vendor
+     ```
    - Then build the following packages step by step, sourcing .bashrc after every build:
      ```
      rosbag2_test_common
@@ -72,8 +73,11 @@ This repository provides guidance on setting up and working with the turtlebots 
      ```
    - There are some packages, like ```rosbag2_tests``` and ```rosbag2``` which have issues building, but they don't seem important for the purposes of recording and playing back bag files.
      
-6. Copy the contents of jetson.sh
-7. Make an environment variable for the specified robot
+6. Copy the files from jetson_files to the home directory:  
+   ```
+   cp jetson_files/*.* /home/jetson
+   ```
+7. Make an environment variable for the specified robot (optional).
    
 ## Raspberry pi Setup
 1. Setup as shown in the turtlebot3 guide, installing ros2 foxy.
