@@ -46,4 +46,4 @@ echo "save to ${ROSBAG_NAME}"
 # Record rosbag and log output
 #----First line: RGB-D. Second line: stereo
 #ros2 bag record -o ${ROSBAG_NAME} --max-cache-size 0 /${ROBOT_ID}/D435i/color/image_raw /${ROBOT_ID}/D435i/color/camera_info /${ROBOT_ID}/D435i/depth/image_rect_raw /${ROBOT_ID}/D435i/depth/camera_info /${ROBOT_ID}/D435i/extrinsics/depth_to_color &> ${ROSBAG_LOG} &
-ros2 bag record -o ${ROSBAG_NAME} --max-cache-size 0 /${ROBOT_ID}/D435i/infra1/camera_info /${ROBOT_ID}/D435i/infra2/camera_info /${ROBOT_ID}/D435i/infra1/image_rect_raw /${ROBOT_ID}/D435i/infra2/image_rect_raw /${ROBOT_ID}/D435i/imu &> ${ROSBAG_LOG} &   
+ros2 bag record -o ${ROSBAG_NAME} --max-cache-size 0 /${ROBOT_ID}/D435i/infra1/camera_info /${ROBOT_ID}/D435i/infra2/camera_info /${ROBOT_ID}/D435i/infra1/image_rect_raw /${ROBOT_ID}/D435i/infra2/image_rect_raw /${ROBOT_ID}/D435i/imu /${ROBOT_ID}/D435i/accel/imu_info /${ROBOT_ID}/D435i/accel/metadata /${ROBOT_ID}/D435i/accel/sample /${ROBOT_ID}/D435i/gyro/imu_info /${ROBOT_ID}/D435i/gyro/metadata /${ROBOT_ID}/D435i/gyro/sample &> ${ROSBAG_LOG} &   
