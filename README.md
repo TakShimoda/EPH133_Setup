@@ -21,8 +21,20 @@ This repository provides guidance on setting up and working with the turtlebots 
 
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp; ```sudo apt install ros-foxy-realsense2-*```
 
-
-4. Confirm there's no mismatch between the realsense SDK and the firmware. This can cause an ```auto_exposure_limit``` error.
+4. Confirm that udev-rules are in place so that the Jetson can enable the accelerometer and gyroscope of the realsense.
+   - Test if the following works:
+     ```
+     ros2 launch realsense2_camera rs_launch.py enable_gyro:=true enable_accel:=true 
+     ```
+   - If it doesn't work, the topics, such as ```/camera/imu``` won't publish and there will be error messages, such as the following:
+     
+     ```[ERROR] [1705959753.179528268] [camera.camera]: /tmp/binarydeb/ros-foxy-realsense2-camera-4.51.1/src/rs_node_setup.cpp:344:An exception has been thrown: Failed to set frequency 1. device path: /sys/devices/70090000.xusb/usb2/2-1/2-1.1/2-1.1:1.5/0003:8086:0B3A.000A/HID-SENSOR-200073.1.auto/iio:device1/in_accel_sampling_frequency Last Error: Permission denied ```
+   - To fix this, re-isntall SDK by following step 2 above (first 3 steps in the link), then also install udev-rules:
+     ```
+     sudo apt-get install librealsense2-udev-rules
+     ```
+   - Reboot the Jetson after installing, and this issue should be fixed. Try running the the first command in this step again to ensure there are no error messages, and check that topics, such as ```/camera/imu``` are published.
+5. Confirm there's no mismatch between the realsense SDK and the firmware. This can cause an ```auto_exposure_limit``` error.
    -  **Note**: the version we are interested in is the one that shows when running  the realsense2 ros node. When you launch a node with for example, ```ros2 launch realsense2_camera rs_launch.py```, you should see the line:
    
       ```...Built with LibRealSense v2.51.1```
@@ -33,12 +45,12 @@ This repository provides guidance on setting up and working with the turtlebots 
    - Check from the [firmware downloads page](https://dev.intelrealsense.com/docs/firmware-releases) if your SDK and firmware matches up. If not, change it so they do.
    - If your firmware needs to be updated, the realsense-viewer should show it to you and you can update from there. If you need to downgrade your firmware version, you should go to the firmware downloads page shown above, download the appropriate firmware, put it into a USB into the Jetson, then in the realsense-viewer go to **More**->**Update Firmware...** and select the bin file from the firmware package you downloaded.
   
-5. Install the ```foxy-future branch``` of rosbag2 from [source](https://github.com/ros2/rosbag2/tree/foxy-future):
+6. Install the ```foxy-future branch``` of rosbag2 from [source](https://github.com/ros2/rosbag2/tree/foxy-future):
    - First make an empty ros2 workspace and source the local setup bash script:
      
       ```
       mkdir -p ros2_ws/src
-      cd ros2_ws/src
+      cd ros2_ws
       colcon build
       ```
    - Then add the following lines to ```.bashrc``` after the line sourcing the main ros2 installation:
@@ -51,6 +63,7 @@ This repository provides guidance on setting up and working with the turtlebots 
      and source ```.bashrc```.    
    - Then clone the repository of rosbag2:
      ```
+     cd ~/ros2_ws/src
      git clone -b foxy-future https://github.com/ros2/rosbag2
      ```
    - Then install some dependencies to properly build the packages:
@@ -73,11 +86,11 @@ This repository provides guidance on setting up and working with the turtlebots 
      ```
    - There are some packages, like ```rosbag2_tests``` and ```rosbag2``` which have issues building, but they don't seem important for the purposes of recording and playing back bag files.
      
-6. Copy the files from jetson_files to the home directory:  
+7. Copy the files from jetson_files to the home directory:  
    ```
    cp Jetson_files/*.* /home/jetson
    ```
-7. Make an environment variable for the specified robot (optional).
+8. Make an environment variable for the specified robot (optional).
    
 ## Raspberry pi Setup
 1. Setup as shown in the turtlebot3 guide, installing ros2 foxy.
