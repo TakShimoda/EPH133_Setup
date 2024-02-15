@@ -7,6 +7,7 @@ This repository provides guidance on setting up and working with the turtlebots 
 [Raspberry pi Setup](https://github.com/TakShimoda/EPH133_Setup?tab=readme-ov-file#raspberry-pi-setup)  
 [Running the robots with vicon](https://github.com/TakShimoda/EPH133_Setup?tab=readme-ov-file#running-the-robots-with-vicon)  
 [Save files from Jetson on USB by command line](https://github.com/TakShimoda/EPH133_Setup?tab=readme-ov-file#save-files-from-jetson-on-usb-by-command-line)
+[Save changes from remote repositories](https://github.com/TakShimoda/EPH133_Setup?tab=readme-ov-file#saving-changes-from-remote-repositories)
 
 ## Jetson Nano Setup
 ### Setting up the OS
@@ -143,4 +144,11 @@ This repository provides guidance on setting up and working with the turtlebots 
    udisksctl unmount -b /dev/sda1
    udisksctl power-off -b /dev/sda
     ```
-
+## Saving changes from remote repositories
+The turtlebots have packages from remote repositories installed on them. To save changes made on the remote repositories, use the following commands:
+```
+cd YOUR_REPOSITORY
+git fetch \origin #Fetch the changes from remote
+git stash push --include-untracked #Discard local changes. If you have important changes on turtlebot, don't do this!
+git merge origin/master #Merge the remote changes to your local repo.
+```
