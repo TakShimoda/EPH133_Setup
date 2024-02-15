@@ -6,9 +6,8 @@ This repository provides guidance on setting up and working with the turtlebots 
 [Jetson Nano Setup](https://github.com/TakShimoda/EPH133_Setup?tab=readme-ov-file#jetson-nano-setup)   
 [Raspberry pi Setup](https://github.com/TakShimoda/EPH133_Setup?tab=readme-ov-file#raspberry-pi-setup)  
 [Running the robots with vicon](https://github.com/TakShimoda/EPH133_Setup?tab=readme-ov-file#running-the-robots-with-vicon)  
-[Save files from Jetson on USB by command line](https://github.com/TakShimoda/EPH133_Setup?tab=readme-ov-file#save-files-from-jetson-on-usb-by-command-line)
-[Save changes from remote repositories](https://github.com/TakShimoda/EPH133_Setup?tab=readme-ov-file#saving-changes-from-remote-repositories)
-
+[Save files from Jetson on USB by command line](https://github.com/TakShimoda/EPH133_Setup?tab=readme-ov-file#save-files-from-jetson-on-usb-by-command-line)  
+[Savings changes from remote repositories](https://github.com/TakShimoda/EPH133_Setup?tab=readme-ov-file#saving-changes-from-remote-repositories)
 ## Jetson Nano Setup
 ### Setting up the OS
 1. Download Balena Etcher https://etcher.balena.io/
