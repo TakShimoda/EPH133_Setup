@@ -172,11 +172,13 @@ sed -i '107i\
 
 echo -e "\nvoid Odometry::pose_relocalization_callback(const geometry_msgs::msg::Point::SharedPtr point)\n{\n  robot_pose_[0] = point->x;\n  robot_pose_[1] = point->y;\n  robot_pose_[2] = point->z;\n}" >> src/odometry.cpp
 ```
-Then use the following command to add the appropriate line to ```include/turtlebot3_node/odometry.hpp```:
+Then use the following commands to add the appropriate lines to ```include/turtlebot3_node/odometry.hpp```:
 ```
 awk -v lineno=60 -v text="  void pose_relocalization_callback(const geometry_msgs::msg::Point::SharedPtr point);" 'NR == lineno {print "\n" text "\n"} NR != lineno' include/turtlebot3_node/odometry.hpp > tmpfile && mv tmpfile include/turtlebot3_node/odometry.hpp
+
+awk -v lineno=70 -v text="  rclcpp::Subscription<geometry_msgs::msg::Point>::SharedPtr pose_relocalization_state_sub_;" 'NR == lineno {print text "\n"} NR != lineno' include/turtlebot3_node/odometry.hpp > tmpfile && mv tmpfile include/turtlebot3_node/odometry.hpp
 ```
-After using the above commands, the two files should look like the ones from [this package](https://github.com/paolorugg/my_turtlebot3_node/tree/main/tbt3_node/turtlebot3_node), where [lines 108-111](https://github.com/paolorugg/my_turtlebot3_node/blob/main/tbt3_node/turtlebot3_node/src/odometry.cpp#L108-L111) and [lines 283-288](https://github.com/paolorugg/my_turtlebot3_node/blob/main/tbt3_node/turtlebot3_node/src/odometry.cpp#L283-L288) should be present in ```src/odometry.cpp```, and [the following line](https://github.com/paolorugg/my_turtlebot3_node/blob/main/tbt3_node/turtlebot3_node/include/turtlebot3_node/odometry.hpp#L64) should be in ```include/turtlebot3_node/odometry.hpp```.
+After using the above commands, the two files should look like the ones from [this package](https://github.com/paolorugg/my_turtlebot3_node/tree/main/tbt3_node/turtlebot3_node), where [lines 108-111](https://github.com/paolorugg/my_turtlebot3_node/blob/main/tbt3_node/turtlebot3_node/src/odometry.cpp#L108-L111) and [lines 283-288](https://github.com/paolorugg/my_turtlebot3_node/blob/main/tbt3_node/turtlebot3_node/src/odometry.cpp#L283-L288) should be present in ```src/odometry.cpp```, and the lines [here](https://github.com/paolorugg/my_turtlebot3_node/blob/main/tbt3_node/turtlebot3_node/include/turtlebot3_node/odometry.hpp#L64) and [here](https://github.com/paolorugg/my_turtlebot3_node/blob/main/tbt3_node/turtlebot3_node/include/turtlebot3_node/odometry.hpp#L73) should be in ```include/turtlebot3_node/odometry.hpp```.
 
 Finally, rebuild the package:
 ```
