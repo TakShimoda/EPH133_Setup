@@ -178,3 +178,10 @@ awk -v lineno=60 -v text="  void pose_relocalization_callback(const geometry_msg
 ```
 After using the above commands, the two files should look like the ones from [this package](https://github.com/paolorugg/my_turtlebot3_node/tree/main/tbt3_node/turtlebot3_node), where [lines 108-111](https://github.com/paolorugg/my_turtlebot3_node/blob/main/tbt3_node/turtlebot3_node/src/odometry.cpp#L108-L111) and [lines 283-288](https://github.com/paolorugg/my_turtlebot3_node/blob/main/tbt3_node/turtlebot3_node/src/odometry.cpp#L283-L288) should be present in ```src/odometry.cpp```, and [the following line](https://github.com/paolorugg/my_turtlebot3_node/blob/main/tbt3_node/turtlebot3_node/include/turtlebot3_node/odometry.hpp#L64) should be in ```include/turtlebot3_node/odometry.hpp```.
 
+Finally, rebuild the package:
+```
+cd ~/turtlebot3_ws
+colcon build --packages-select turtlebot3_node
+source ~/.bashrc
+```
+
