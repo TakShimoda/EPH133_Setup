@@ -151,3 +151,29 @@ git fetch \origin #Fetch the changes from remote
 git stash push --include-untracked #Discard local changes. If you have important changes on turtlebot, don't do this!
 git merge origin/master #Merge the remote changes to your local repo.
 ```
+
+## Troubleshooting Errors
+### RPI
+#### /odom gives extremely large values
+A known issue on the turtlebot is when it gives extremely large values for odometry after startup, as mentioned [here](https://github.com/ROBOTIS-GIT/turtlebot3/issues/880). This issue stems from bytestuffing from the DYNAMIXEL2Arduino library, which causes the issue, confirmed [here](https://github.com/ROBOTIS-GIT/turtlebot3/issues/926#issuecomment-1403244766)
+One way to alleviate the issue is to manually create a subscriber in the turtlebot3 node to subscribe to a ```/pose_relocalization topic```, and manually send all zeros to it, making the robot start at a pose with all values at zero. 
+To do so, go to the raspberry pi, and cd to the ```turtlebot3_node``` workspace:
+```
+cd /turtlebot3_ws/src/turtlebot3/turtlebot3_node
+```
+Then use the following commands to add the appropriate lines to ```src/odometry.cpp```: 
+```
+sed -i '107i\
+\n\  pose_relocalization_state_sub_ = nh_->create_subscription<geometry_msgs::msg::Point>(\n\
+    "pose_relocalization",\n\
+    qos,\n\
+    std::bind(&Odometry::pose_relocalization_callback, this, std::placeholders::_1));' src/odometry.cpp
+
+echo -e "\nvoid Odometry::pose_relocalization_callback(const geometry_msgs::msg::Point::SharedPtr point)\n{\n  robot_pose_[0] = point->x;\n  robot_pose_[1] = point->y;\n  robot_pose_[2] = point->z;\n}" >> src/odometry.cpp
+```
+Then use the following command to add the appropriate line to ```include/turtlebot3_node/odometry.hpp```:
+```
+awk -v lineno=60 -v text="  void pose_relocalization_callback(const geometry_msgs::msg::Point::SharedPtr point);" 'NR == lineno {print "\n" text "\n"} NR != lineno' include/turtlebot3_node/odometry.hpp > tmpfile && mv tmpfile include/turtlebot3_node/odometry.hpp
+```
+After using the above commands, the two files should look like the ones from [this package](https://github.com/paolorugg/my_turtlebot3_node/tree/main/tbt3_node/turtlebot3_node), where [lines 108-111](https://github.com/paolorugg/my_turtlebot3_node/blob/main/tbt3_node/turtlebot3_node/src/odometry.cpp#L108-L111) and [lines 283-288](https://github.com/paolorugg/my_turtlebot3_node/blob/main/tbt3_node/turtlebot3_node/src/odometry.cpp#L283-L288) should be present in ```src/odometry.cpp```, and [the following line](https://github.com/paolorugg/my_turtlebot3_node/blob/main/tbt3_node/turtlebot3_node/include/turtlebot3_node/odometry.hpp#L64) should be in ```include/turtlebot3_node/odometry.hpp```.
+
