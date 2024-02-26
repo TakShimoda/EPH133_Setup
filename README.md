@@ -151,6 +151,8 @@ cd YOUR_REPOSITORY
 git fetch \origin #Fetch the changes from remote
 git stash push --include-untracked #Discard local changes. If you have important changes on turtlebot, don't do this!
 git merge origin/master #Merge the remote changes to your local repo.
+cd YOUR_REPOSITORY
+colcon build --packages-select YOUR_REPOSITORY #--symlink-install if it's a Python package
 ```
 
 ## Troubleshooting Errors
