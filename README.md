@@ -95,14 +95,20 @@ This repository provides guidance on setting up and working with the turtlebots 
    
 ## Raspberry pi Setup
 1. Setup as shown in the turtlebot3 guide, installing ros2 foxy.
-2. Copy the contents of rpi_wifi.txt to ```/etc/netplan/50-cloud-yaml```. rpi_wifi.txt can be found [here](https://drive.google.com/drive/folders/1qM5vqfcCoc4Gt38sy7KjRVl5En-bksCO). Modify so the IP address matches the output of ```ifconfig``` under wlan.
+   - Also make sure to have argcomplete installed so the tab auto-complete works in the terminal:
+      ```
+      sudo apt install python3-colcon-common-extensions
+      echo "source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash" >> ~/.bashrc
+      source ~/.bashrc
+      ```
+3. Copy the contents of rpi_wifi.txt to ```/etc/netplan/50-cloud-yaml```. rpi_wifi.txt can be found [here](https://drive.google.com/drive/folders/1qM5vqfcCoc4Gt38sy7KjRVl5En-bksCO). Modify so the IP address matches the output of ```ifconfig``` under wlan.
    - Also make sure to apply changes after editing the file with:
       ```
       sudo netplan apply
       ```
-3. Clone the repository [my_tb3_launcher](https://github.com/h2jaafar/my_tb3_launcher) into turtlebot3/src.
-4. Change any instances of "B04" to the Burger number of your choice.
-5. Copy the RPI.sh and kill_rpi.sh scripts into the home folder:
+4. Clone the repository [my_tb3_launcher](https://github.com/h2jaafar/my_tb3_launcher) into turtlebot3/src.
+5. Change any instances of "B04" to the Burger number of your choice.
+6. Copy the RPI.sh and kill_rpi.sh scripts into the home folder:
       ```
       cp RPI_files/*.* /home/ubuntu
       ```
