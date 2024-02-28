@@ -154,6 +154,7 @@ git merge origin/master #Merge the remote changes to your local repo.
 cd YOUR_REPOSITORY
 colcon build --packages-select YOUR_REPOSITORY #--symlink-install if it's a Python package
 ```
+- sometimes in a python package, it may change the permission of your python codes to not be executable (shown in white instead of green when using the ```ls``` command). In that case, add executable permission ```chmod +x <file name>.py``` before doing the colcon build.
 
 ## Troubleshooting Errors
 ### RPI
