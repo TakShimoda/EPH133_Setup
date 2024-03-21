@@ -63,10 +63,12 @@ sleep 2  # Allow rosbag to start recording
 
 echo "Save to: ${ROSBAG_NAME}"
 
+ros2 run tb3_controller tb3_nav_action_client --name ${ROBOT_ID} --config "turtlebot3_ws/src/tb3_controller/config/client_config.yaml"
+
 # Launch the controller for the provided robot ID and log output
 #ros2 launch controller ${ROBOT_ID}_controller.launch.py &> ${CONTROLLER_LOG} &
 #ros2 run turtlebot3_teleop teleop_keyboard --ros-args --remap __ns:=/${ROBOT_ID}
-echo "running publisher"
-ros2 topic pub -t 4 B04/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.8}}"
-ros2 topic pub -1 B04/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}"
-ros2 topic pub B04/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.1, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.1}}"
+#echo "running publisher"
+#ros2 topic pub -t 4 B04/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.8}}"
+#ros2 topic pub -1 B04/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}"
+#ros2 topic pub B04/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.1, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.1}}"
