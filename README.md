@@ -101,18 +101,17 @@ This repository provides guidance on setting up and working with the turtlebots 
       echo "source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash" >> ~/.bashrc
       source ~/.bashrc
       ```
-3. Copy the contents of rpi_wifi.txt to ```/etc/netplan/50-cloud-yaml```. rpi_wifi.txt can be found [here](https://drive.google.com/drive/folders/1qM5vqfcCoc4Gt38sy7KjRVl5En-bksCO). Modify so the IP address matches the output of ```ifconfig``` under wlan.
+2. Copy the contents of rpi_wifi.txt to ```/etc/netplan/50-cloud-yaml```. rpi_wifi.txt can be found [here](https://drive.google.com/drive/folders/1qM5vqfcCoc4Gt38sy7KjRVl5En-bksCO). Modify so the IP address matches the output of ```ifconfig``` under wlan.
    - Also make sure to apply changes after editing the file with:
       ```
       sudo netplan apply
       ```
-4. Clone the repository [my_tb3_launcher](https://github.com/h2jaafar/my_tb3_launcher) into turtlebot3/src.
+3. Clone the repository [my_tb3_launcher](https://github.com/h2jaafar/my_tb3_launcher) into turtlebot3/src.
    - There are multiple instances where you will have to change 'B04' with the robot you're working with (e.g. B01):
-      - ```my_tb3_launcher/param/burger.yaml```
+      - ```my_tb3_launcher/param/burger.yaml``` for burger or ```my_tb3_launcher/param/waffle_pi.yaml``` for waffle
       - ```my_tb3_launcher/launch/my_tb3_bringup.launch.py```, line 91 (namespace for turtlebot3_node)
       - ```my_tb3_launcher/launch/turtlebot3_state_publisher.launch.py```, line 59 (namespace for robot_state_publisher)
-6. Change any instances of "B04" to the Burger number of your choice.
-7. Copy the RPI.sh and kill_rpi.sh scripts into the home folder:
+4. Copy the RPI.sh and kill_rpi.sh scripts into the home folder:
       ```
       cp RPI_files/*.* /home/ubuntu
       ```
