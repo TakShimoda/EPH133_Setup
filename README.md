@@ -46,7 +46,7 @@ This repository provides guidance on setting up and working with the turtlebots 
    - Check from the [firmware downloads page](https://dev.intelrealsense.com/docs/firmware-releases) if your SDK and firmware matches up. If not, change it so they do.
    - If your firmware needs to be updated, the realsense-viewer should show it to you and you can update from there. If you need to downgrade your firmware version, you should go to the firmware downloads page shown above, download the appropriate firmware, put it into a USB into the Jetson, then in the realsense-viewer go to **More**->**Update Firmware...** and select the bin file from the firmware package you downloaded.
   
-6. Install the ```foxy-future branch``` of rosbag2 from [source](https://github.com/ros2/rosbag2/tree/foxy-future):
+6. Install the ```foxy-future branch``` of rosbag2 from [source](https://github.com/ros2/rosbag2/tree/foxy-future). This is to fix an issue of topics being dropped when recording to bag files, which will be tested in the next step. The steps to install the new rosbag2 are:
    - First make an empty ros2 workspace and source the local setup bash script:
      
       ```
@@ -86,12 +86,27 @@ This repository provides guidance on setting up and working with the turtlebots 
      ros2bag
      ```
    - There are some packages, like ```rosbag2_tests``` and ```rosbag2``` which have issues building, but they don't seem important for the purposes of recording and playing back bag files.
-     
-7. Copy the files from jetson_files to the home directory:  
+7. Test that the bag record function works (doesn't drop topics) by recording topics and confirming they have the same frequency as what's published live:
+   - First launch the camera with imu at the maximum frequency (400Hz) with linear interpolation method (unite_imu_method=2), and as an example for images, disable RGB and enable infrared streams for the camera:
+     ```
+     ros2 launch realsense2_camera rs_launch.py unite_imu_method:=2 enable_sync:=true enable_color:=false enable_infra1:=true enable_infra2:=true enable_gyro:=true enable_accel:=true gyro_fps:=400 accel_fps:=250
+     ```
+   - Check the frequency on the topics, where the main topic of interest is ```/camera/imu```, which should be 400Hz:
+     ```
+     ros2 topic hz /camera/imu
+     ```
+     - This should return about 400Hz. You can also check the gyroscope stream to ensure it's 400Hz, the accelerometer stream to ensure it's 250Hz, and the infra1 and infra2 streams to ensure they're 30fps (default)
+   - Now record these topics to a folder bag_test.
+   ```
+   ros2 bag record -o bag_test topics /camera/imu /camera/accel/sample /camera/gyro/sample /camera/infra1/image_rect_raw /camera/infra2/image_rect_raw
+   ```
+   - Now check the bag file ```bag_test_0.db3``` to ensure all the topics have the same frequencies they published at. First you can simply check the topic counts and bag duration with ```ros2 bag info bag_test_0.db3```, then divide the counts by the duration. You can also playback the bag file and check the frequencies to ensure they're consistent on playback. If the frequencies in the bag file matches the live frequency, then the bag recorder is working and topics are not dropped as they're being recorded.
+   
+8. Copy the files from jetson_files to the home directory:  
    ```
    cp Jetson_files/*.* /home/jetson
    ```
-8. Make an environment variable for the specified robot (optional).
+9. Make an environment variable for the specified robot (optional).
    
 ## Raspberry pi Setup
 1. Setup as shown in the turtlebot3 guide, installing ros2 foxy.
