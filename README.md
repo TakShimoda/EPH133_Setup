@@ -222,3 +222,17 @@ sudo apt-get install ros-foxy-tf-transformations
 sudo pip3 install transforms3d
 ```
 - For the first command, you can ctrl+c when it fetched everything, and for the second, you can do it at the line ```Processing triggers for man-db (2.9.1-1) ...```
+### Jetson Nano
+#### Checking power consumption.
+- The Jetson Nano, when powered on the extension pins takes 5V at 3A for each pin, taking in 15W per pin, with 2 pins providing 30W. [reference](https://www.ximea.com/support/wiki/apis/Jetson_Nano_Benchmarks)
+- Appropriate power may not be provided, especially with the power demands of the realsense camera and other peripherals (e.g. WiFi dongle).
+- To monitor power consumption, install [jtop](https://rnext.it/jetson_stats/).
+   ```
+   sudo pip3 install -U jetson-stats
+   ```
+   - If you don't have pip3, type ```sudo apt update``` then ```sudo apt install python3-pip```. 
+- Then run jtop to monitor your system:
+   ```
+   jtop
+   ```
+   - more options for jtop can be found [here](https://rnext.it/jetson_stats/jtop/jtop.html)
