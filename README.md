@@ -25,7 +25,7 @@ This repository provides guidance on setting up and working with the turtlebots 
 4. Confirm that udev-rules are in place so that the Jetson can enable the accelerometer and gyroscope of the realsense.
    - Test if the following works:
      ```
-     ros2 launch realsense2_camera rs_launch.py enable_gyro:=true enable_accel:=true 
+     ros2 launch realsense2_camera rs_launch.py enable_gyro:=true enable_accel:=true unite_imu_method:=2
      ```
    - If it doesn't work, the topics, such as ```/camera/imu``` won't publish and there will be error messages, such as the following:
      
