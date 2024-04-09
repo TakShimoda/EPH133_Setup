@@ -85,6 +85,7 @@ This repository provides guidance on setting up and working with the turtlebots 
      zstd_vendor
      ros2bag
      ```
+   - The package ```rosbag2_storage_evaluation``` is actually named ```ros2_rosbag_evaluation```, so this latter name should be used when building. Also delete the ```COLCON_IGNORE``` file inside this package to build it with colcon 
    - There are some packages, like ```rosbag2_tests``` and ```rosbag2``` which have issues building, but they don't seem important for the purposes of recording and playing back bag files.
 7. Test that the bag record function works (doesn't drop topics) by recording topics and confirming they have the same frequency as what's published live:
    - First launch the camera with imu at the maximum frequency (400Hz) with linear interpolation method (unite_imu_method=2), and as an example for images, disable RGB and enable infrared streams for the camera:
