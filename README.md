@@ -108,6 +108,7 @@ This repository provides guidance on setting up and working with the turtlebots 
    cp Jetson_files/*.* /home/jetson
    ```
    - Also make sure to give executable permissions to these script files (```jetson.sh```, ```jetson_args.sh```, ```kill_jetsons.sh```)
+   - Make sure to change the robot name from B04 to the appropriate name in the files ```args.txt``` and ```D435i_launch.py```. 
 9. Make an environment variable for the specified robot (optional).
    
 ## Raspberry pi Setup
