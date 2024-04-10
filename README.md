@@ -107,6 +107,7 @@ This repository provides guidance on setting up and working with the turtlebots 
    ```
    cp Jetson_files/*.* /home/jetson
    ```
+   - Also make sure to give executable permissions to these script files (```jetson.sh```, ```jetson_args.sh```, ```kill_jetsons.sh```)
 9. Make an environment variable for the specified robot (optional).
    
 ## Raspberry pi Setup
