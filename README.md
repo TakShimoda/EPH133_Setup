@@ -60,6 +60,8 @@ This repository provides guidance on setting up and working with the turtlebots 
      source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
      source /usr/share/colcon_cd/function/colcon_cd.sh
      export _colcon_cd_root=/opt/ros/foxy/
+     export ROS_DOMAIN_ID=30
+     export ROS_LOCALHOST_ONLY=1
      ```
      and source ```.bashrc```.    
    - Then clone the repository of rosbag2:
@@ -108,7 +110,7 @@ This repository provides guidance on setting up and working with the turtlebots 
    cp Jetson_files/*.* /home/jetson
    ```
    - Also make sure to give executable permissions to these script files (```jetson.sh```, ```jetson_args.sh```, ```kill_jetsons.sh```)
-   - Make sure to change the robot name from B04 to the appropriate name in the files ```args.txt``` and ```D435i_launch.py```. 
+   - Make sure to change the robot name from B04 to the appropriate name in the files ```args.txt``` and ```D435i_launch.py```.
 9. Make an environment variable for the specified robot (optional).
    
 ## Raspberry pi Setup
