@@ -136,8 +136,9 @@ This repository provides guidance on setting up and working with the turtlebots 
       cp RPI_files/*.* /home/ubuntu
       ```
 ## Running the robots with vicon.
-1. Start up the shell scripts to run the vicon setup.
-2. ssh into the raspberry pi and jetson nano. Password for RPI is ```turtlebot``` and password for jetson is ```jetson```
+1. Startup the vicon system. Login to RCVL-temp with password: rcvl.133
+2. Start up the shell scripts to run the vicon setup.
+3. ssh into the raspberry pi and jetson nano. Password for RPI is ```turtlebot``` and password for jetson is ```jetson```
    - For the Raspberry Pi (e.g. B04):
    ```ssh ubuntu@192.168.0.204```
    - For the Jetson Nano (e.g. B04:
