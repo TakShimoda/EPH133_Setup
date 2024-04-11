@@ -1,0 +1,42 @@
+session_name: vicon-startup
+
+environment:
+  B01_rpi: "ubuntu@192.168.0.211"
+  B02_rpi: "ubuntu@192.168.0.212"
+  B04_rpi: "ubuntu@192.168.0.204"
+  B04_jetson: "jetson@192.168.0.230"
+  B05_rpi: "ubuntu@192.168.0.112"
+  B05_jetson: "jetson@192.168.0.229"
+  W09_rpi: "ubuntu@192.168.0.201"
+
+options:
+  default-command: /bin/bash
+
+windows:
+- window_name: Shell_A_to_D
+  layout: tiled  
+  shell_command_before:
+    - sleep 1;
+
+  panes:
+    - source $ROS1_INSTALL_PATH/setup.bash; rosclean purge -y; sleep 1; roscore
+    - source $ROS1_INSTALL_PATH/setup.bash; source $ROS2_INSTALL_PATH/setup.bash; export ROS_MASTER_URI=http://localhost:11311; sleep 2; ros2 run ros1_bridge dynamic_bridge
+    - source $ROS1_INSTALL_PATH/setup.bash; source ~/catkin_ws/devel/setup.bash; sleep 3; roslaunch vicon_bridge vicon.launch
+    - source $ROS2_INSTALL_PATH/setup.bash; source /opt/ros/foxy/setup.bash; source dev_ws/install/setup.bash; sleep 3; ros2 run cpp_pubsub traj_publisher
+    - source $ROS2_INSTALL_PATH/setup.bash; ros2 topic echo --csv /B04/odom > B04_odom.csv \
+    - source $ROS2_INSTALL_PATH/setup.bash; ros2 bag record /vicon/B04/B04 -o VICON_TEST \
+
+- window_name: SSH_ROBOTS
+  layout: tiled  
+  shell_command_before:
+    - sleep 1;
+  panes:
+    - sleep 5; ssh $B01_rpi \
+    - sleep 5; ssh $B02_rpi \
+    - sleep 5; ssh $B04_rpi \
+    - sleep 5; ssh $B04_jetson \
+    - sleep 5; ssh $B05_rpi \
+    - sleep 5; ssh $B05_jetson \
+    - sleep 5; ssh $W09_rpi \
+    
+
