@@ -136,14 +136,24 @@ This repository provides guidance on setting up and working with the turtlebots 
       cp RPI_files/*.* /home/ubuntu
       ```
 ## Running the robots with vicon.
-1. Startup the vicon system. Login to RCVL-temp with password: rcvl.133
-2. Start up the shell scripts to run the vicon setup.
-3. ssh into the raspberry pi and jetson nano. Password for RPI is ```turtlebot``` and password for jetson is ```jetson```
+1. Startup the vicon system. Login to RCVL-temp with password: rcvl.133 and start up the vicon tracker software.
+2. Start up the xubuntu computer, with the same password, rcvl.133. 
+3. On the xubuntu computer, start up the shell scripts to run the vicon setup by running the vicon startup file with tmux:
+   ```
+   tmuxp load vicon_startup.yaml
+   ```
+   - The file ```vicon_startup.yaml``` is from this repository, and loads up all the necessary terminal commands to get the vicon system running.
+   - There are multiple windows with multiple panes each. To toggle and control these panes, you must press ```Ctrl+b``` and quickly press a key that corresponds to a command:
+      - ```z``` for full screen on a pane
+      - arrow keys to navigate between panes
+      - numbers for the numbered windows  
+   - This script loads up the ssh commands, so the next step isn't necessary if you use this script to ssh. 
+4. ssh into the raspberry pi and jetson nano. Password for RPI is ```turtlebot``` and password for jetson is ```jetson```
    - For the Raspberry Pi (e.g. B04):
    ```ssh ubuntu@192.168.0.204```
    - For the Jetson Nano (e.g. B04:
    ```ssh jetson@192.168.0.230```
-4. Run the scripts for both rpi and jetson, and then record the vicon topic for the ground-truth.
+5. Run the scripts for both rpi and jetson, and then record the vicon topic for the ground-truth.
    - For the jetson, there are two options:
      1. Run the normal jetson.sh script and provide the robot number, e.g.:
         ```
@@ -157,6 +167,11 @@ This repository provides guidance on setting up and working with the turtlebots 
         ./kill_jetsons.sh #when you're done recording.
         ```
         - This option requires you to modify parameters inside the args.txt file, which is easier and more organized. The robot namespace is also handled here,and different capture profiles (e.g. RGB, infra) can be appended to args.txt after a "- " in the lastline of the file.
+   - Run the rpi script in the raspberry pi and provide the robot number as the argument, etc. :
+     ```
+     ./rpi.sh B04
+     ./kill_rpi.sh #when you're done recording.
+     ```
 
 ## Save files from Jetson on USB by command line
 1. Plug in your usb and find its mount point by typing
