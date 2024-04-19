@@ -61,6 +61,10 @@ rm -f ${D435I_LOG} ${ROSBAG_LOG}
 ros2 launch D435i_launch.py $launch_args &> ${D435I_LOG} &
 sleep 3  # Give the launch some time to complete
 
+#Disable emitter
+ros2 param set /${ROBOT_ID}/D435i/D435i depth_module.emitter_enabled 0
+echo "emitter disabled."
+
 # Create the base rosbag filename
 DATE=$(date +%m%d)
 BASE_NAME="${ROBOT_ID}-Jetson-${DATE}"
