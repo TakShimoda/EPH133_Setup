@@ -26,7 +26,7 @@ rm -f ${D435I_LOG} ${ROSBAG_LOG}
 
 # Launch D435i script and log output
 ros2 launch D435i_launch.py unite_imu_method:=2 enable_sync:=true enable_color:=false enable_gyro:=true enable_accel:=true gyro_fps:=400 accel_fps:=250 &> ${D435I_LOG} &
-sleep 3  # Give the launch some time to complete
+sleep 6  # Give the launch some time to complete
 
 #Disable emitter
 ros2 param set /${ROBOT_ID}/D435i/D435i depth_module.emitter_enabled 0
