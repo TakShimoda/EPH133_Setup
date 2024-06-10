@@ -121,7 +121,7 @@ This repository provides guidance on setting up and working with the turtlebots 
       echo "source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash" >> ~/.bashrc
       source ~/.bashrc
       ```
-2. Copy the contents of rpi_wifi.txt to ```/etc/netplan/50-cloud-yaml```. rpi_wifi.txt can be found [here](https://drive.google.com/drive/folders/1qM5vqfcCoc4Gt38sy7KjRVl5En-bksCO). Modify so the IP address matches the output of ```ifconfig``` under wlan.
+2. Copy the contents of rpi_wifi.txt to ```/etc/netplan/50-cloud-yaml```. rpi_wifi.txt can be found [here](https://drive.google.com/drive/folders/1qM5vqfcCoc4Gt38sy7KjRVl5En-bksCO). Modify so the IP address matches the output of ```ifconfig``` under wlan. Note, even after changing the WiFi network and password in the file, the IP address should remain the same.
    - Also make sure to apply changes after editing the file with:
       ```
       sudo netplan apply
