@@ -135,6 +135,19 @@ This repository provides guidance on setting up and working with the turtlebots 
       ```
       cp RPI_files/*.* /home/ubuntu
       ```
+5. Sync time with chrony NTP:
+   ```
+   sudo apt install chrony -y
+   ```
+   - Then start the NTP server by syncing to the first source under ```/etc/chrony/chrony.conf``` (should be ntp.ubuntu.com):
+   ```
+   sudo chronyd -q server ntp.ubuntu.com iburst
+   ```
+   - This should show the system clock being adjusted. Then, to start the chronyd daemon so it's available across the reboots:
+   ```
+   systemctl start chronyd
+   systemctl enable chrony
+   ```
 ## Running the robots with vicon.
 1. Startup the vicon system. Login to RCVL-temp with password: rcvl.133 and start up the vicon tracker software.
 2. Start up the xubuntu computer, with the same password, rcvl.133. 
