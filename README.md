@@ -111,7 +111,26 @@ This repository provides guidance on setting up and working with the turtlebots 
    ```
    - Also make sure to give executable permissions to these script files (```jetson.sh```, ```jetson_args.sh```, ```kill_jetsons.sh```)
    - Make sure to change the robot name from B04 to the appropriate name in the files ```args.txt``` and ```D435i_launch.py```.
-9. Make an environment variable for the specified robot (optional).
+9. Set up appropriate time and sync with Chrony NTP
+   - By default, Nano will have a different timezone, so to set it to EST:
+      ``` 
+      sudo timedatectl set-timezone America/Toronto
+      ```
+   - Now, install chrony to setup NTP to sync the clock with a server's clock:
+      ```
+      sudo apt install chrony -y
+      ```
+   - Then start the NTP server by syncing to the first source under ```/etc/chrony/chrony.conf``` (should be ntp.ubuntu.com):
+      ```
+      sudo chronyd -q server ntp.ubuntu.com iburst
+      ```
+      - If this returns an error with another chronyd already running, kill that one with ```sudo systemctl stop chronyd```
+   - This should show the system clock being adjusted. Then, to start the chronyd daemon so it's available across the reboots:
+      ```
+      systemctl start chronyd
+      systemctl enable chrony
+      ```
+10. Make an environment variable for the specified robot (optional).
    
 ## Raspberry pi Setup
 1. Setup as shown in the turtlebot3 guide, installing ros2 foxy.
@@ -135,19 +154,24 @@ This repository provides guidance on setting up and working with the turtlebots 
       ```
       cp RPI_files/*.* /home/ubuntu
       ```
-5. Sync time with chrony NTP:
-   ```
-   sudo apt install chrony -y
-   ```
+5. Set up appropriate time and sync with Chrony NTP
+   - By default, RPI will be set to UTC, so to set it to EST which is UTC-04:00:
+      ``` 
+      sudo timedatectl set-timezone America/Toronto
+      ```
+   - Now, install chrony to setup NTP to sync the clock with a server's clock:
+      ```
+      sudo apt install chrony -y
+      ```
    - Then start the NTP server by syncing to the first source under ```/etc/chrony/chrony.conf``` (should be ntp.ubuntu.com):
-   ```
-   sudo chronyd -q server ntp.ubuntu.com iburst
-   ```
+      ```
+      sudo chronyd -q server ntp.ubuntu.com iburst
+      ```
    - This should show the system clock being adjusted. Then, to start the chronyd daemon so it's available across the reboots:
-   ```
-   systemctl start chronyd
-   systemctl enable chrony
-   ```
+      ```
+      systemctl start chronyd
+      systemctl enable chrony
+      ```
 ## Running the robots with vicon.
 1. Startup the vicon system. Login to RCVL-temp with password: rcvl.133 and start up the vicon tracker software.
 2. Start up the xubuntu computer, with the same password, rcvl.133. 
