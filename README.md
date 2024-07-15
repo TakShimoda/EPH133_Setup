@@ -116,6 +116,7 @@ This repository provides guidance on setting up and working with the turtlebots 
       ``` 
       sudo timedatectl set-timezone America/Toronto
       ```
+      - Or set it manually in the GUI in settings.
    - Now, install chrony to setup NTP to sync the clock with a server's clock:
       ```
       sudo apt install chrony -y
