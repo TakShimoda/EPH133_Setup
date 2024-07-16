@@ -297,9 +297,10 @@ If a Python script encounters this error, use the following commands:
 ```
 sudo apt-get update
 sudo apt-get install ros-foxy-tf-transformations
+sudo apt install python3-pip
 sudo pip3 install transforms3d
 ```
-- For the first command, you can ctrl+c when it fetched everything, and for the second, you can do it at the line ```Processing triggers for man-db (2.9.1-1) ...```
+- For the first command, you can ctrl+c when it fetched everything, and for the second and third, you can do it at the line ```Processing triggers for man-db (2.9.1-1) ...```
 ### Jetson Nano
 #### Checking power consumption.
 - The Jetson Nano, when powered on the extension pins takes 5V at 3A for each pin, taking in 15W per pin, with 2 pins providing 30W. [reference](https://www.ximea.com/support/wiki/apis/Jetson_Nano_Benchmarks)
