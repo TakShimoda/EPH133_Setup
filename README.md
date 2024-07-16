@@ -146,16 +146,30 @@ This repository provides guidance on setting up and working with the turtlebots 
       ```
       sudo netplan apply
       ```
-3. Clone the repository [my_tb3_launcher](https://github.com/h2jaafar/my_tb3_launcher) into turtlebot3/src.
+3. Clone the repository [my_tb3_launcher](https://github.com/h2jaafar/my_tb3_launcher) into turtlebot3/src and build with symlink install since it's a python package.
+     ```
+     cd ~/turtlebot3_ws/src
+     git clone https://github.com/h2jaafar/my_tb3_launcher
+     cd ~/turtlebot3_ws
+     colcon build --packages-select my_tb3_launcher --symlink-install
+     ```
    - There are multiple instances where you will have to change 'B04' with the robot you're working with (e.g. B01):
       - ```my_tb3_launcher/param/burger.yaml``` for burger or ```my_tb3_launcher/param/waffle_pi.yaml``` for waffle
       - ```my_tb3_launcher/launch/my_tb3_bringup.launch.py```, line 91 (namespace for turtlebot3_node)
       - ```my_tb3_launcher/launch/turtlebot3_state_publisher.launch.py```, line 59 (namespace for robot_state_publisher)
-4. Copy the RPI.sh and kill_rpi.sh scripts into the home folder:
+
+5. Clone the repositories [tb3_controller](https://github.com/TakShimoda/tb3_controller) and [tb3_interfaces](https://github.com/TakShimoda/tb3_interfaces) and build them using symlink install for tb3_controller since it's a python package:
+   ```
+   cd ~/turtlebot3_ws/src
+   git clone https://github.com/TakShimoda/tb3_controller
+   git clone https://github.com/TakShimoda/tb3_interfaces
+   colcon build --packages-select tb3_interfaces tb3_controller --symlink-install
+   ```
+6. Copy the RPI.sh and kill_rpi.sh scripts into the home folder:
       ```
       cp RPI_files/*.* /home/ubuntu
       ```
-5. Set up appropriate time and sync with Chrony NTP
+7. Set up appropriate time and sync with Chrony NTP
    - By default, RPI will be set to UTC, so to set it to EST which is UTC-04:00:
       ``` 
       sudo timedatectl set-timezone America/Toronto
