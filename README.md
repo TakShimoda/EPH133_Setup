@@ -163,6 +163,7 @@ This repository provides guidance on setting up and working with the turtlebots 
    cd ~/turtlebot3_ws/src
    git clone https://github.com/TakShimoda/tb3_controller
    git clone https://github.com/TakShimoda/tb3_interfaces
+   cd ~/turtlebot3_ws
    colcon build --packages-select tb3_interfaces tb3_controller --symlink-install
    ```
 6. Copy the RPI.sh and kill_rpi.sh scripts into the home folder:
