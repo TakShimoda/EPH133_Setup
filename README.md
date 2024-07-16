@@ -152,6 +152,7 @@ This repository provides guidance on setting up and working with the turtlebots 
      git clone https://github.com/h2jaafar/my_tb3_launcher
      cd ~/turtlebot3_ws
      colcon build --packages-select my_tb3_launcher --symlink-install
+     source ~/.bashrc
      ```
    - There are multiple instances where you will have to change 'B04' with the robot you're working with (e.g. B01):
       - ```my_tb3_launcher/param/burger.yaml``` for burger or ```my_tb3_launcher/param/waffle_pi.yaml``` for waffle
@@ -165,6 +166,7 @@ This repository provides guidance on setting up and working with the turtlebots 
    git clone https://github.com/TakShimoda/tb3_interfaces
    cd ~/turtlebot3_ws
    colcon build --packages-select tb3_interfaces tb3_controller --symlink-install
+   source ~/.bashrc
    ```
 6. Copy the RPI.sh and kill_rpi.sh scripts into the home folder:
       ```
