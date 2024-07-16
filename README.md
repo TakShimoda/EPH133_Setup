@@ -172,7 +172,8 @@ This repository provides guidance on setting up and working with the turtlebots 
       ```
       cp RPI_files/*.* /home/ubuntu
       ```
-7. Set up appropriate time and sync with Chrony NTP
+7. If not already done, remember to uncomment the line at the end of ~/.bashrc to export the appropriate turtlebo3 model, e.g. ```export TURTLEBOT3_MODEL=burger```
+8. Set up appropriate time and sync with Chrony NTP
    - By default, RPI will be set to UTC, so to set it to EST which is UTC-04:00:
       ``` 
       sudo timedatectl set-timezone America/Toronto
