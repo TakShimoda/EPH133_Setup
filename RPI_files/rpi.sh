@@ -57,7 +57,7 @@ ROSBAG_NAME="${BASE_NAME}-${COUNT}"
 
 # Record rosbag and log output
 #ros2 bag record -o ${ROSBAG_NAME} /tf /tf_static /${ROBOT_ID}/robot_path /${ROBOT_ID}/waypoint_markers /${ROBOT_ID}/odom /${ROBOT_ID}/imu /vicon/${ROBOT_ID}/${ROBOT_ID} ${ROBOT_ID}/robot_description  &> ${ROSBAG_LOG} &
-ros2 bag record -o ${ROSBAG_NAME} /tf /tf_static /${ROBOT_ID}/odom /${ROBOT_ID}/imu &> ${ROSBAG_LOG} &
+ros2 bag record -o ${ROSBAG_NAME} /tf /tf_static /vicon/${ROBOT_ID}/${ROBOT_ID} /${ROBOT_ID}/odom /${ROBOT_ID}/imu &> ${ROSBAG_LOG} &
 
 sleep 2  # Allow rosbag to start recording
 
