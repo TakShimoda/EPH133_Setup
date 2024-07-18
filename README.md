@@ -184,7 +184,7 @@ This repository provides guidance on setting up and working with the turtlebots 
       ```
    - Then start the NTP server by syncing to the first source under ```/etc/chrony/chrony.conf``` (should be ntp.ubuntu.com):
       ```
-      sudo chronyd -q server ntp.ubuntu.com iburst
+      sudo chronyd -q 'server ntp.ubuntu.com iburst'
       ```
    - This should show the system clock being adjusted. Then, to start the chronyd daemon so it's available across the reboots:
       ```
