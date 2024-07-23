@@ -61,8 +61,9 @@ rm -f ${D435I_LOG} ${ROSBAG_LOG}
 ros2 launch D435i_launch.py $launch_args &> ${D435I_LOG} &
 sleep 6  # Give the launch some time to complete
 
-#Disable emitter
+#Disable emitter: use the first line for normal sessions. Use the second line for getting /tf_static data (for RTABMAP/Swarm-SLAM)
 ros2 param set /${ROBOT_ID}/D435i/D435i depth_module.emitter_enabled 0
+ros2 param set /${ROBOT_ID}/D435i/${ROBOT_ID} depth_module.emitter_enabled 0
 echo "emitter disabled."
 
 # Create the base rosbag filename
@@ -81,5 +82,5 @@ ROSBAG_NAME="${BASE_NAME}-${COUNT}"
 echo "save to ${ROSBAG_NAME}"
 
 # Record rosbag and log output
-ros2 bag record -o ${ROSBAG_NAME} --max-cache-size 0 $bag_topics &> ${ROSBAG_LOG} &   
+ros2 bag record -o ${ROSBAG_NAME} --max-cache-size 0 $bag_topics /tf_static &> ${ROSBAG_LOG} &   
 
