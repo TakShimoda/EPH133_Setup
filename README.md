@@ -132,6 +132,10 @@ This repository provides guidance on setting up and working with the turtlebots 
       systemctl enable chrony
       ```
 10. Make an environment variable for the specified robot (optional).
+11. For setting up the system to record tf data onto /tf_static (for Swarm-SLAM or any other algorithm that needs TF frame data), make some minor adjustments:
+    - Modify D435i_launch.py so the ```camera_name``` parameter is set to the name of the robot, e.g. 'B01' instead of 'D435i'
+    - Comment out [line 65](https://github.com/TakShimoda/EPH133_Setup/blob/main/Jetson_files/jetson_args.sh#L65) and uncomment [line 66](https://github.com/TakShimoda/EPH133_Setup/blob/main/Jetson_files/jetson_args.sh#L66) from jetson_args.sh to account for the different node names. Topics should remain the same as the namespacing parameter of D435i_launch.py remains the same.
+    - This is only for algorithms like Swarm-SLAM mentioned above. For anything else, no need to modify. Also, this is a temporary solution in place of namespacing TF frames, however that requires uninstalling librealsense and installing at least 4.54.1 from source and modifying lines in the file mentioned [here](https://github.com/IntelRealSense/realsense-ros/issues/3119#issuecomment-2163458651)
    
 ## Raspberry pi Setup
 1. Setup as shown in the turtlebot3 guide, installing ros2 foxy.
