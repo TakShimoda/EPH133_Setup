@@ -61,6 +61,8 @@ configurable_parameters = [{'name': 'camera_name',                  'default': '
                            {'name': 'depth_module.gain.2',         'default': '16', 'description': 'Initial value for hdr_merge filter'},
                            {'name': 'wait_for_device_timeout',      'default': '-1.', 'description': 'Timeout for waiting for device to connect (Seconds)'},
                            {'name': 'reconnect_timeout',            'default': '6.', 'description': 'Timeout(seconds) between consequtive reconnection attempts'},
+                           {'name': 'depth_module.emitter_enabled',            'default': '0', 'description': 'Enable/disable emitter (1/0)'},
+                           {'name': 'depth_module.depth_profile',         'default': '640,480,30', 'description': 'depth module profile'},
                           ]
 
 def declare_configurable_parameters(parameters):
