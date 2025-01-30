@@ -136,6 +136,47 @@ This repository provides guidance on setting up and working with the turtlebots 
     - Modify D435i_launch.py so the ```camera_name``` parameter is set to the name of the robot, e.g. 'B01' instead of 'D435i'
     - Comment out [line 65](https://github.com/TakShimoda/EPH133_Setup/blob/main/Jetson_files/jetson_args.sh#L65) and uncomment [line 66](https://github.com/TakShimoda/EPH133_Setup/blob/main/Jetson_files/jetson_args.sh#L66) from jetson_args.sh to account for the different node names. Topics should remain the same as the namespacing parameter of D435i_launch.py remains the same.
     - This is only for algorithms like Swarm-SLAM mentioned above. For anything else, no need to modify. Also, this is a temporary solution in place of namespacing TF frames, however that requires uninstalling librealsense and installing at least 4.54.1 from source and modifying lines in the file mentioned [here](https://github.com/IntelRealSense/realsense-ros/issues/3119#issuecomment-2163458651)
+
+### Setting up AprilTag detection in ROS2
+1. Install the apriltag ROS library
+   ```
+   git clone https://github.com/AprilRobotics/apriltag
+   cd apriltag && mkdir build
+   cmake -B build -DCMAKE_BUILD_TYPE=Release
+   cmake --build build
+   cd build && sudo make install
+   ```
+   - This will install the apriltag libraries and headers under ```/usr/local/lib``` and ```/usr/local/include```, which should be noted when linking it to the ROS wrapper.
+2. Install the apriltag_msgs and apriltag ROS2 libraries:
+   ```
+   cd ~/ros2_ws/src
+   git clone https://github.com/christianrauch/apriltag_msgs
+   git clone https://github.com/christianrauch/apriltag_ros
+   ```
+   - install the apriltag_msgs library first:
+     ```
+      cd ~/ros2_ws
+      colcon build --packages-select apriltag_msgs
+      source ~/.bashrc
+      ```
+   - install the apriltag_ros library with some modifications. In the CMakeLists.txt, before the find_package() command for apriltag, add the lines:
+     ```
+     set(CMAKE_PREFIX_PATH "/usr/local" $ {CMAKE_PREFIX_PATH})
+     set(CMAKE_INSTALL_RPATH "/usr/local/lib" $ {CMAKE_INSTALL_RPATH})
+     ```
+   - then build:
+     ```
+      cd ~/ros2_ws
+      colcon build --packages-select apriltag_ros
+      source ~/.bashrc
+      ```     
+3. Copy the apriltags.sh and D435i_apriltag_launch.py files onto the home directory. Edit line 88 of D435i_apriltag_launch.py and change B05 to the robot being used. 
+4. Run the script with:
+   ```
+   ./apriltags.sh <ROBOT_NAME>
+   ```   
+   - This will run launch the realsense script and apriltag library, while also recording the tf topic onto a csv inside a folder.
+   - e.g. ./apriltags.sh B05 would put a csv into a folder called B05-Apriltags-0130-1. These are the raw outputs of the apriltag detections
    
 ## Raspberry pi Setup
 1. Setup as shown in the turtlebot3 guide, installing ros2 foxy.
