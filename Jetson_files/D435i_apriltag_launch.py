@@ -17,7 +17,7 @@ from launch_ros.descriptions import ComposableNode
 cfg_36h11 = {
     "image_transport": "raw",
     "family": "36h11",
-    "size": 0.173,
+    "size": 0.0435,
     "max_hamming": 0,
     "z_up": True
 }
