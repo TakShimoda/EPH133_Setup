@@ -151,7 +151,7 @@ This repository provides guidance on setting up and working with the turtlebots 
    ```
    cd ~/ros2_ws/src
    git clone https://github.com/christianrauch/apriltag_msgs
-   git clone https://github.com/christianrauch/apriltag_ros
+   git clone https://github.com/christianrauch/apriltag_ros -b dashing
    ```
    - install the apriltag_msgs library first:
      ```
