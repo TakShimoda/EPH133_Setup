@@ -37,6 +37,7 @@ rm -f ${BRINGUP_LOG} ${ROSBAG_LOG} ${CONTROLLER_LOG}
 ros2 launch my_tb3_launcher my_tb3_bringup.launch.py &> ${BRINGUP_LOG} &
 sleep 4  # Allow launch to complete
 ros2 topic pub -1 /pose_relocalization geometry_msgs/Point
+ros2 param set /${ROBOT_ID}/diff_drive_controller odometry.use_imu False
 echo "${ROBOT_ID}"
 
 # Create the base rosbag filename
@@ -57,7 +58,7 @@ ROSBAG_NAME="${BASE_NAME}-${COUNT}"
 
 # Record rosbag and log output
 #ros2 bag record -o ${ROSBAG_NAME} /tf /tf_static /${ROBOT_ID}/robot_path /${ROBOT_ID}/waypoint_markers /${ROBOT_ID}/odom /${ROBOT_ID}/imu /vicon/${ROBOT_ID}/${ROBOT_ID} ${ROBOT_ID}/robot_description  &> ${ROSBAG_LOG} &
-ros2 bag record -o ${ROSBAG_NAME} /tf /tf_static /vicon/${ROBOT_ID}/${ROBOT_ID} /${ROBOT_ID}/odom /${ROBOT_ID}/imu &> ${ROSBAG_LOG} &
+#ros2 bag record -o ${ROSBAG_NAME} /tf /tf_static /vicon/${ROBOT_ID}/${ROBOT_ID} /${ROBOT_ID}/odom /${ROBOT_ID}/imu &> ${ROSBAG_LOG} &
 
 sleep 2  # Allow rosbag to start recording
 
