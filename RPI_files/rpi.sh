@@ -36,7 +36,7 @@ rm -f ${BRINGUP_LOG} ${ROSBAG_LOG} ${CONTROLLER_LOG}
 # Launch bringup script and log output
 ros2 launch my_tb3_launcher my_tb3_bringup.launch.py &> ${BRINGUP_LOG} &
 sleep 4  # Allow launch to complete
-ros2 topic pub -1 /pose_relocalization geometry_msgs/Point
+ros2 topic pub -1 /${ROBOT_ID}/pose_relocalization geometry_msgs/Point
 ros2 param set /${ROBOT_ID}/diff_drive_controller odometry.use_imu False
 echo "${ROBOT_ID}"
 
