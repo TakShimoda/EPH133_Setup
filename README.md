@@ -346,7 +346,14 @@ sudo apt-get install ros-foxy-tf-transformations
 sudo apt install python3-pip
 sudo pip3 install transforms3d
 ```
+
 - For the first command, you can ctrl+c when it fetched everything, and for the second and third, you can do it at the line ```Processing triggers for man-db (2.9.1-1) ...```
+
+#### Turtlebot3 Node not measuring orientation changes
+If the parameter ```/<ROBOT_ID>/diff_drive_controller odometry.use_imu``` has been set to ```false``` before, the turtlebot3 node might stop using IMU even when it's set to ```true``` again, and it won't measure orientation changes from the IMU.
+To fix this issue, automatically set the ```use_imu_``` of the ```Odometry``` class to ```true``` in the constructor. 
+- Set the following [line](https://github.com/ROBOTIS-GIT/turtlebot3/blob/humble/turtlebot3_node/src/odometry.cpp#L33) to ```use_imu_(true)```, and this [line](https://github.com/ROBOTIS-GIT/turtlebot3/blob/humble/turtlebot3_node/src/odometry.cpp#L50) to ```true``` in odometry.cpp inside the turtlebot3_node and re-build the package.
+
 ### Jetson Nano
 #### Checking power consumption.
 - The Jetson Nano, when powered on the extension pins takes 5V at 3A for each pin, taking in 15W per pin, with 2 pins providing 30W. [reference](https://www.ximea.com/support/wiki/apis/Jetson_Nano_Benchmarks)
