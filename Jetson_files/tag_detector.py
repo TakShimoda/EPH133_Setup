@@ -26,7 +26,7 @@ class ImageSubscriber(Node):
         # if not os.path.exists(newpath):
         #     os.makedirs(newpath)
 
-        self.csv_file = open(output + '.csv', 'w', newline='')
+        self.csv_file = open(output, 'w', newline='')
         self.csv_writer = csv.writer(self.csv_file)
         # store tags in deques for storing, then synchronizing
         self.tf_buffer = deque()   #Buffer of TFMessage, a list of TransformStamped
