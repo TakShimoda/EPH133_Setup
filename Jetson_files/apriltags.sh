@@ -48,5 +48,6 @@ echo "save to ${CSV_NAME}"
 
 mkdir ${CSV_NAME} && cd ${CSV_NAME}
 
-ros2 topic echo /tf tf2_msgs/msg/TFMessage --csv --qos-history keep_all --qos-reliability reliable > ${CSV_NAME}.csv
+python3 /home/jetson/tag_detector.py --output ${CSV_NAME}.csv
+#ros2 topic echo /tf tf2_msgs/msg/TFMessage --csv --qos-history keep_all --qos-reliability reliable > ${CSV_NAME}.csv
 
